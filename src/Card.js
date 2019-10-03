@@ -1,8 +1,8 @@
 class Card {
-  constructor(num, question, answers, correctAnswer) {
-    this.num = 1;
+  constructor(id, question, possibleAnswers = [], correctAnswer) {
+    this.id = id;
     this.question = question;
-    this.answers = answers;
+    this.possibleAnswers = possibleAnswers;
     this.correctAnswer = correctAnswer;
   }
 
@@ -10,3 +10,6 @@ class Card {
 }
 
 module.exports = Card;
+
+
+// Each card has an id, a question, possible answers, and a correct answer
