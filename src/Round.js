@@ -1,10 +1,15 @@
 class Round {
   constructor(deck) {
-    this.currentCard = deck;
+    this.turns = 0;
+    this.currentCard = deck.cards[this.turns];
   }
   returnCurrentCard() {
-    var deckIndex = Object.keys(this.currentCard);
-    console.log(deckIndex[0]);
+    return this.currentCard;
+  }
+  takeTurn() {
+    const turn = new Turn(deck[this.turns]);
+    this.turns++;
+
   }
 
 }

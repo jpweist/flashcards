@@ -1,12 +1,10 @@
 class Deck {
   constructor(card) {
-    this.cards = [];
-    this.numOfCards = this.cards.length;
+    this.cards = card;
+    this.numOfCards = 0;
   }
-  makeDeck(card) {
-    this.cards.push(card);
-    this.numOfCards = this.cards.length;
-  
+  countCards(length) {
+    this.numOfCards = length;
   }
 
 }

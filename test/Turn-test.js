@@ -4,49 +4,43 @@ const expect = chai.expect;
 const Turn = require('../src/Turn');
 const Card = require('../src/Card');
 
+const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
+
+
 describe('Turn', function() {
     it('should be a function', function() {
-      const turn = new Turn();
       expect(Turn).to.be.a('function');
     });
 
     it('should be an instance of Turn', function(){
-      const turn = new Turn();
       expect(turn).to.be.an.instanceof(Turn);
     });
 
     it('should Instantiated with two arguments -  user’s guess and a Card object for the current card in play.', function() {
-      const turn = new Turn('seven', Card);
-      expect(turn.guess).to.be.a('string');
-      expect({Card: 0}).to.deep.equal({Card: 0});
+      expect(turn.guess).to.equal('pug');
+      // console.log(turn.card.possibleAnswers)
+      expect(turn.card.id).to.equal(1);
+      expect(turn.card.question).to.equal('What is Robbie\'s favorite animal');
+      expect(turn.card.possibleAnswers).to.deep.equal(['sea otter', 'pug', 'capybara']);
+      expect(turn.card.correctAnswer).to.equal('sea otter');
     });
 
     it('should have a method that returns the guess', function() {
-      const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-      const turn = new Turn('pug', card);
       expect(turn.returnGuess).to.be.an('function');
       expect(turn.returnGuess()).to.equal('pug');
     });
 
     it('should have a method that returns the Card', function() {
-      const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-      const turn = new Turn('pug', card);
       expect(turn.returnCard).to.be.an('function');
       expect(turn.returnCard()).to.equal(card);
     });
 
-    it('should be a method that returns a boolean indicating if the user’s guess matches the correct answer on the card', function() {
-      const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-
-      const turn = new Turn('pug', card);
-
+    it('should be method that returns boolean indicating user’s guess matches the correct answer on the card', function() {
       expect(turn.evaluateGuess).to.be.an('function');
       expect(turn.evaluateGuess()).to.be.false;
     });
 
-    it('should be method that returns either ‘incorrect!’ or ‘correct!’ based on whether the guess is correct or not', function() {
-      const card = new Card(1, 'What is Robbie\'s favorite animal', ['sea otter', 'pug', 'capybara'], 'sea otter');
-      const turn = new Turn('pug', card);
+    it('should be method that returns ‘incorrect!’/‘correct!’ based on whether the guess is correct/not', function() {
       expect(turn.giveFeedback).to.be.an('function');
       expect(turn.giveFeedback()).to.equal('incorrect!');
 
